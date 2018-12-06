@@ -1,1 +1,1 @@
-# Molecular_Atomization_Energy_Predictions
+# This repository contains models and scripts to predict the molecular atomization energies of small compounds. 
