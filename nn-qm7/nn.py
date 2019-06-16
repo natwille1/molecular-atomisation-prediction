@@ -12,18 +12,22 @@ class Sequential(Module):
 		self.modules = modules
 	
 	def forward(self,X):
-		for m in self.modules: X = m.forward(X)
+		for m in self.modules: 
+			X = m.forward(X)
 		return X
 	
 	def backward(self,DY):
-		for m in self.modules[::-1]: DY = m.backward(DY)
+		for m in self.modules[::-1]: 
+			DY = m.backward(DY)
 		return DY
 		
 	def update(self,lr):
-		for m in self.modules: X = m.update(lr)
+		for m in self.modules: 
+			X = m.update(lr)
 		
 	def average(self,nn,a):
-		for m,n in zip(self.modules,nn.modules): m.average(n,a)
+		for m,n in zip(self.modules,nn.modules): 
+			m.average(n,a)
 
 class Input(Module):
 
@@ -53,9 +57,11 @@ class Input(Module):
 				Xexp += [numpy.tanh((X[:,i]-k)/self.step)]
 		return numpy.array(Xexp).T
 	
-	def normalize(self,X): return (X-self.mean)/self.std
+	def normalize(self,X): 
+		return (X-self.mean)/self.std
 	
-	def forward(self,X): return self.normalize(self.expand(self.realize(X))).astype('float32')
+	def forward(self,X): 
+		return self.normalize(self.expand(self.realize(X))).astype('float32')
 
 class Output(Module):
 

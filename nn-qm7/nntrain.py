@@ -41,9 +41,13 @@ for i in range(1,1000001):
 	if i > 2500:  lr = 0.005
 	if i > 12500: lr = 0.01
 
+	## Creates an array with random integers of size: batch size (25)
 	r = numpy.random.randint(0,len(X),[mb])
+	## X[r] - r array ([1,2,3...25]) selects 25 arrays from the np matrix where each number refers to the particular array in the matrix 
 	Y = nnsgd.forward(X[r])
+	## calculates the difference between the calculated Y and the actual Y (from matrix T)
 	nnsgd.backward(Y-T[r])
+	## updates the weights according to the learning rate 
 	nnsgd.update(lr)
 	nnavg.average(nnsgd,(1/hist)/((1/hist)+i))
 	nnavg.nbiter = i
